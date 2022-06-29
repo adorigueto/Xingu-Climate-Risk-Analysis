@@ -856,17 +856,88 @@ tas_h <- cbind(tas_1850_1869_df, tas_1870_1889_df, tas_1890_1909_df, tas_1910_19
 # predicted temperature
 tas_p <- cbind(tas_2015_2034_df, tas_2035_2054_df, tas_2055_2074_df, tas_2075_2094_df, tas_2095_2100_df)
 
+# Kelvin to degree Celsius
+tas_h_C <- tas_h - 273.15
+tas_p_C <- tas_p - 273.15
+
 # Plot and save a PNG file of temperature of 160 years of historical data and the year of 2070
 png("tas_historical_vs_2070.png", width = 700, height = 400, res = 115)
 par(mfrow=c(1,1), family = "serif")
-matplot(x = c(1:365), y = tas_h, type = 'l', col = 'gray', lwd = 1,
+matplot(x = c(1:365), y = tas_h_C, type = 'l', col = 'gray', lwd = 1,
         xaxt = 'n', bty = 'n', xlab = "Months", ylab = "",
         cex.lab = 1, cex.main = 1.2, main = "Temperature is higher in 2070 compared to historical data")
-lines(x = c(1:365), y = tas_p$`2070`, col = 'red', lwd = 1.5)
+lines(x = c(1:365), y = tas_p_C$`2070`, col = 'red', lwd = 1.5)
 axis(1, at = seq(15, 365, by = 30),
      labels = c("Jan", "Feb", "Mar", "Atas", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
      las = 2, line = 0, lwd = 0.5)
-title(ylab = bquote("Daily temperature [K]"), line = 2.5)
-legend(200, 302, legend = c("Years of 1850-2010 \nsuperposed", "2070"),
+title(ylab = bquote("Daily temperature [ºC]"), line = 2.5)
+legend(200, 29, legend = c("Years of 1850-2010 \nsuperposed", "2070"),
        col=c("gray", "red"), lty=1:1, cex=0.8, text.font = 3, box.lty = 0)
+dev.off()
+
+# Work with average of temperature for each 20 year interval
+# Compute the average of all daily temperature of historical and predicted data --- daily 'tas' turns into yearly 'tas'
+tas_h_avg <- data.frame(colMeans(tas_h))
+tas_p_avg <- data.frame(colMeans(tas_p))
+colnames(tas_h_avg) <- "avg tas"
+colnames(tas_p_avg) <- "avg tas"
+
+# Combine in a larger data frame
+tas_avg_year <- rbind(tas_h_avg, tas_p_avg)
+
+# Visualize
+matplot(y = tas_avg_year, type = 'h', col = 'black', lwd = 15,
+        bty = 'n', xlab = "", ylab = "",
+        cex.lab = 1, cex.main = 1.2, main = "Temperature in 2075-2095 is the larger in the period")
+
+# Make data frames --- yearly mean 'tas' turns into the mean of 20 years intervals
+tas_avg_1 <- data.frame(mean(tas_h_avg[1:20,]))
+tas_avg_2 <- data.frame(mean(tas_h_avg[21:40,]))
+tas_avg_3 <- data.frame(mean(tas_h_avg[41:60,]))
+tas_avg_4 <- data.frame(mean(tas_h_avg[61:80,]))
+tas_avg_5 <- data.frame(mean(tas_h_avg[81:100,]))
+tas_avg_6 <- data.frame(mean(tas_h_avg[101:120,]))
+tas_avg_7 <- data.frame(mean(tas_h_avg[121:140,]))
+tas_avg_8 <- data.frame(mean(tas_h_avg[141:160,]))
+tas_avg_9 <- data.frame(mean(tas_h_avg[161:165,]))
+tas_avg_10 <- data.frame(mean(tas_p_avg[1:20,]))
+tas_avg_11 <- data.frame(mean(tas_p_avg[21:40,]))
+tas_avg_12 <- data.frame(mean(tas_p_avg[41:60,]))
+tas_avg_13 <- data.frame(mean(tas_p_avg[61:80,]))
+tas_avg_14 <- data.frame(mean(tas_p_avg[81:86,]))
+colnames(tas_avg_1) <- "tas_avg"
+colnames(tas_avg_2) <- "tas_avg"
+colnames(tas_avg_3) <- "tas_avg"
+colnames(tas_avg_4) <- "tas_avg"
+colnames(tas_avg_5) <- "tas_avg"
+colnames(tas_avg_6) <- "tas_avg"
+colnames(tas_avg_7) <- "tas_avg"
+colnames(tas_avg_8) <- "tas_avg"
+colnames(tas_avg_9) <- "tas_avg"
+colnames(tas_avg_10) <- "tas_avg"
+colnames(tas_avg_11) <- "tas_avg"
+colnames(tas_avg_12) <- "tas_avg"
+colnames(tas_avg_13) <- "tas_avg"
+colnames(tas_avg_14) <- "tas_avg"
+
+# Combine data frames
+tas_avg <- rbind(tas_avg_1, tas_avg_2, tas_avg_3, tas_avg_4, tas_avg_5, tas_avg_6, tas_avg_7, tas_avg_8,
+                tas_avg_10, tas_avg_11, tas_avg_12, tas_avg_13)
+
+# Kelvin to degree Celsius
+tas_avg_C <- tas_avg - 273.15
+
+# Plot and save a PNG file of temperature of 160 years of historical and predicted data
+png("tas_avg_1850-2095.png", width = 700, height = 400, res = 115)
+par(mfrow=c(1,1), family = "serif")
+matplot(y = tas_avg_C, type = 'h', col = 'black', lwd = 15,
+        xaxt = 'n', yaxt = 'n', bty = 'n', xlab = "", ylab = "",
+        cex.lab = 1, cex.main = 1.2, main = "Temperature in 2075-2095 is the larger in the period")
+axis(1, at = seq(1, 12, by = 1),
+     labels = c("1850-1870", "1870-1890", "1890-1910", "1910-1930", "1930-1950", "1950-1970", "1970-1990", "1990-2010",
+                "2015-2035", "2035-2055", "2055-2075", "2075-2095"),
+     las = 2, line = 0, lwd = 0.5)
+axis(2, at = seq(25, 28, by = 1), las=0, line = -0.3, lwd = 0.5)
+title(main = "Means in 20 years intervals", cex.main = 1, font.main = 3, line = 0.5)
+title(ylab = bquote("Mean temperature  [ºC]"), line = 2.5)
 dev.off()

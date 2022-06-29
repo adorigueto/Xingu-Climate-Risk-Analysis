@@ -49,6 +49,9 @@
 # of interest (lines 108 - 117).
 ########################################################################################################################
 
+# Generating new virtual environment (executed only once in the program lifetime)
+# renv::init()
+
 # Import packages
 library(ncdf4)
 # library(ncdump)
@@ -850,10 +853,10 @@ colnames(tas_2095_2100_df) <- vector_2095_2100
 tas_h <- cbind(tas_1850_1869_df, tas_1870_1889_df, tas_1890_1909_df, tas_1910_1929_df, tas_1930_1949_df, tas_1950_1969_df,
               tas_1970_1989_df, tas_1990_2009_df, tas_2010_2014_df)
 
-# tasedicted tasecipitation
+# predicted temperature
 tas_p <- cbind(tas_2015_2034_df, tas_2035_2054_df, tas_2055_2074_df, tas_2075_2094_df, tas_2095_2100_df)
 
-# Plot and save a PNG file of precipitation of 160 years of historical data and the year of 2070
+# Plot and save a PNG file of temperature of 160 years of historical data and the year of 2070
 png("tas_historical_vs_2070.png", width = 700, height = 400, res = 115)
 par(mfrow=c(1,1), family = "serif")
 matplot(x = c(1:365), y = tas_h, type = 'l', col = 'gray', lwd = 1,
@@ -863,7 +866,7 @@ lines(x = c(1:365), y = tas_p$`2070`, col = 'red', lwd = 1.5)
 axis(1, at = seq(15, 365, by = 30),
      labels = c("Jan", "Feb", "Mar", "Atas", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"),
      las = 2, line = 0, lwd = 0.5)
-title(ylab = bquote("Daily tasecipitation [" ~ kg/m^2*s ~ "]"), line = 2.5)
-legend(200, 0.002, legend = c("Years of 1850-2010 \nsuperposed", "2070"),
+title(ylab = bquote("Daily temperature [K]"), line = 2.5)
+legend(200, 302, legend = c("Years of 1850-2010 \nsuperposed", "2070"),
        col=c("gray", "red"), lty=1:1, cex=0.8, text.font = 3, box.lty = 0)
 dev.off()

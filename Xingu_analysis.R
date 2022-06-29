@@ -25,7 +25,7 @@
 # http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/pr/gr1/v20180701/pr_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20950101-21001231.nc
 #
 # Temperature
-# Historical
+# Historical:
 # http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_18500101-18691231.nc
 # http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_18700101-18891231.nc
 # http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_18900101-19091231.nc
@@ -35,7 +35,8 @@
 # http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19700101-19891231.nc
 # http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19900101-20091231.nc
 # http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_20100101-20141231.nc
-# Predicted
+# 
+# Predicted:
 # http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/tas/gr1/v20180701/tas_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20150101-20341231.nc
 # http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/tas/gr1/v20180701/tas_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20350101-20541231.nc
 # http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/tas/gr1/v20180701/tas_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20550101-20741231.nc

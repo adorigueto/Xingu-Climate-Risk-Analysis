@@ -1,55 +1,15 @@
 ########################################################################################################################
 ##### Objective: Read, extract and analyze the data relative to precipitation and temperature to compare historical
-# and modeled to the future data. Focus is given to the city of Santa Cruz do Xingu (Latitude: 10° 14' 29'' South,
+# and modeled-to-the-future data. Focus is given to the city of Santa Cruz do Xingu (Latitude: 10° 14' 29'' South,
 # Longitude: 52° 22' 20'' West).
-# The datasets are based in the CMIP 6 (Coupled Model Intercomparison Project Phase 6) and can be dowloaded at the
-# following URLs:
-#
-# Precipitation
-# Historical:
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/pr/gr1/v20190726/pr_day_GFDL-ESM4_historical_r1i1p1f1_gr1_18500101-18691231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/pr/gr1/v20190726/pr_day_GFDL-ESM4_historical_r1i1p1f1_gr1_18700101-18891231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/pr/gr1/v20190726/pr_day_GFDL-ESM4_historical_r1i1p1f1_gr1_18900101-19091231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/pr/gr1/v20190726/pr_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19100101-19291231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/pr/gr1/v20190726/pr_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19300101-19491231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/pr/gr1/v20190726/pr_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19500101-19691231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/pr/gr1/v20190726/pr_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19700101-19891231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/pr/gr1/v20190726/pr_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19900101-20091231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/pr/gr1/v20190726/pr_day_GFDL-ESM4_historical_r1i1p1f1_gr1_20100101-20141231.nc
-#
-# Modeled predictions (following SSP370 --- Shared Socioeconomic Pathways):
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/pr/gr1/v20180701/pr_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20150101-20341231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/pr/gr1/v20180701/pr_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20350101-20541231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/pr/gr1/v20180701/pr_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20550101-20741231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/pr/gr1/v20180701/pr_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20750101-20941231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/pr/gr1/v20180701/pr_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20950101-21001231.nc
-#
-# Temperature
-# Historical:
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_18500101-18691231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_18700101-18891231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_18900101-19091231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19100101-19291231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19300101-19491231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19500101-19691231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19700101-19891231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_19900101-20091231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/day/tas/gr1/v20190726/tas_day_GFDL-ESM4_historical_r1i1p1f1_gr1_20100101-20141231.nc
-# 
-# Predicted:
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/tas/gr1/v20180701/tas_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20150101-20341231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/tas/gr1/v20180701/tas_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20350101-20541231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/tas/gr1/v20180701/tas_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20550101-20741231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/tas/gr1/v20180701/tas_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20750101-20941231.nc
-# http://esgdata.gfdl.noaa.gov/thredds/fileServer/gfdl_dataroot4/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/day/tas/gr1/v20180701/tas_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20950101-21001231.nc
 
-##### Limitations: Some slices of this code can be optimized with loops: especially lines 92 - 307;
+##### Limitations: Some slices of this code can be optimized with loops: especially lines 52 - 273;
 # The author had no previous experience with netCDF files, hence lots of energy was spent learning to open and extract
 # features without freezing the computer. A reasonable solution was to slice the data to the geographic coordinates
 # of interest (lines 108 - 117).
 ########################################################################################################################
 
-# Generating new virtual environment (executed only once in the program lifetime)
+# Generating a new virtual environment (executed only once in the program's lifetime)
 # renv::init()
 
 # Import packages
@@ -96,7 +56,7 @@ setwd(dir)
 h_1 <- nc_open(file_name_1850)
 # print(h_1)
 
-# 'time' variable unit is days and lenght of 7300 days, which corresponds to 20 years (1850 - 1870 - 1890 - ...)
+# 'time' variable unit is days and length of 7300 days, which corresponds to 20 years (1850 - 1870 - 1890 - ...)
 
 # Set variables (longitude, latitude and time)
 lon_h_1 <- ncvar_get(h_1, "lon")
@@ -107,7 +67,7 @@ t_h_1 <- ncvar_get(h_1, "time")
 # summary(t_h_1)
 # str()
 
-# Find the indeces corresponding to Santa Cruz do Xingu
+# Find the indices corresponding to Santa Cruz do Xingu
 # The coordinates of the city are: lat: 10 14' 29", lon: 52 22' 20"
 lat_min_h_1 <- min(which(h_1$dim$lat$vals >= -11))
 lat_max_h_1 <- max(which(h_1$dim$lat$vals <= -10))
@@ -443,7 +403,7 @@ legend(200, 0.002, legend = c("Years of 1850-2010 \nsuperposed", "2070"),
        col=c("gray", "red"), lty=1:1, cex=0.8, text.font = 3, box.lty = 0)
 dev.off()
 
-# Work with sum of precipitation for each 20 year interval
+# Work with the sum of precipitation for each 20-year interval
 # Sum all daily precipitation of historical and predicted data --- daily 'pr' turns into yearly 'pr'
 pr_h_sum <- data.frame(colSums(pr_h))
 pr_p_sum <- data.frame(colSums(pr_p))
@@ -526,7 +486,7 @@ tas_file_name_2095 <- 'tas_day_GFDL-ESM4_ssp370_r1i1p1f1_gr1_20950101-21001231.n
 h_1_tas <- nc_open(tas_file_name_1850)
 # print(tas_h_1)
 
-# 'time' variable unit is days and lenght of 7300 days, which corresponds to 20 years (1850 - 1870 - 1890 - ...)
+# 'time' variable unit is days and length of 7300 days, which corresponds to 20 years (1850 - 1870 - 1890 - ...)
 
 # Set variables (longitude, latitude and time)
 lon_tas_h_1 <- ncvar_get(h_1_tas, "lon")
@@ -537,7 +497,7 @@ t_tas_h_1 <- ncvar_get(h_1_tas, "time")
 # summary(t_tas_h_1)
 # str()
 
-# Find the indeces corresponding to Santa Cruz do Xingu
+# Find the indices corresponding to Santa Cruz do Xingu
 # The coordinates of the city are: lat: 10 14' 29", lon: 52 22' 20"
 lat_min_tas_h_1 <- min(which(h_1_tas$dim$lat$vals >= -11))
 lat_max_tas_h_1 <- max(which(h_1_tas$dim$lat$vals <= -10))
@@ -860,7 +820,7 @@ tas_p <- cbind(tas_2015_2034_df, tas_2035_2054_df, tas_2055_2074_df, tas_2075_20
 tas_h_C <- tas_h - 273.15
 tas_p_C <- tas_p - 273.15
 
-# Plot and save a PNG file of temperature of 160 years of historical data and the year of 2070
+# Plot and save a PNG file of the temperature of 160 years of historical data and the year of 2070
 png("tas_historical_vs_2070.png", width = 700, height = 400, res = 115)
 par(mfrow=c(1,1), family = "serif")
 matplot(x = c(1:365), y = tas_h_C, type = 'l', col = 'gray', lwd = 1,
@@ -875,7 +835,7 @@ legend(200, 29, legend = c("Years of 1850-2010 \nsuperposed", "2070"),
        col=c("gray", "red"), lty=1:1, cex=0.8, text.font = 3, box.lty = 0)
 dev.off()
 
-# Work with average of temperature for each 20 year interval
+# Work with the average temperature for each 20-year interval
 # Compute the average of all daily temperature of historical and predicted data --- daily 'tas' turns into yearly 'tas'
 tas_h_avg <- data.frame(colMeans(tas_h))
 tas_p_avg <- data.frame(colMeans(tas_p))
